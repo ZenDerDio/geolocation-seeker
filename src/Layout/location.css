@@ -1,0 +1,10 @@
+.location {
+  display: flex;
+  background-color: blue
+}
+
+.locationData {
+  background-color: red;
+  display: flex;
+  flex-direction: column;
+}

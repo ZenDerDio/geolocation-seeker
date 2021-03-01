@@ -1,20 +1,31 @@
-import React from "react";
+import React, {memo, useEffect, useState} from "react";
 import axios from "axios";
-import LocationMap from "./LocationMap";
+import {string} from 'prop-types';
+import Location from "./location";
+import Constants from "../../Constants/constants";
 
-const ACCESS_KEY = "d1112bd1364da835be03be37b08c5e45";
-const ipStackUrl = `http://api.ipstack.com/{IP_ADDRESS}?access_key=${ACCESS_KEY}`;
+const Container = memo(({ searchQuery }) => {
+    const [ipData, setIpData] = useState({});
+    const ipAddressParam = !!searchQuery ? searchQuery : Constants.IP_STACK_CURRENT_ADDRESS_KEY;
+    useEffect(() => {
+        axios.get(Constants.IP_STACK_URL.replace("{IP_ADDRESS}", ipAddressParam))
+            .then((response) => {
+                setIpData(response?.data)
+            })
+            .catch((error) => {
+                console.error(error);
+            })
+    }, [searchQuery]);
 
-const Container = () => {
-    axios.get(ipStackUrl.replace("{IP_ADDRESS}", "check"))
-        .then((response) => {
-            console.log(response);
-        })
-        .catch((error) => {
-            console.error(error);
-        })
+    return <Location addressData={ipData}/>;
+})
 
-    return <LocationMap/>;
+Container.propTypes = {
+    searchQuery: string,
+}
+
+Container.defaultProps = {
+    searchQuery: "",
 }
 
 export default Container;

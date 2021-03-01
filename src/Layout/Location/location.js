@@ -1,15 +1,25 @@
 import React from "react";
-import styles from "./location.css";
+import "./location.css";
 import LocationDetails from "./LocationDetails";
 import LocationMap from "./LocationMap";
+import {shape} from "prop-types";
 
-const Location = () => {
+const Location = ({addressData}) => {
     return (
-        <section className={styles.locationMap}>
-          <LocationDetails/>
-          <LocationMap/>
+        <section className="location">
+          <LocationMap latitude={addressData.latitude} longitude={addressData.longitude} />
+          <LocationDetails addressData={addressData} />
         </section>
     );
+}
+
+
+Location.propTypes = {
+    addressData: shape({}),
+}
+
+Location.defaultProps = {
+    addressData: null,
 }
 
 export default Location;

@@ -1,4 +1,31 @@
 .searchResult {
-  flex: 1;
-  background-color: lightyellow;
+    background-color: #424242;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 50px;
+    max-height: 100%;
+    overflow: hidden;
+}
+
+.searchResultButton {
+    padding: 15px 0;
+    display: flex;
+    justify-content: center;
+}
+
+.searchResultButtonText {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 250px;
+}
+
+.searchResultTitle {
+    color: white;
+    padding-top: 25px;
+}
+
+.searchResultList {
+    list-style-type: none;
+    padding-left: 0;
 }

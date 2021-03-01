@@ -1,4 +1,20 @@
 .locationDetails {
   flex: 1;
-  background-color: lightsalmon;
+  margin: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.locationDetailsFlag {
+  max-width: 45%;
+}
+
+.locationText {
+  color: white;
+}
+
+.locationTextError {
+  align-self: center;
+  color: white;
 }

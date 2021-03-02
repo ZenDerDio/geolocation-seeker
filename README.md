@@ -1,7 +1,7 @@
-Material UI used for visual components,
-ipStack to get ip/url location,
-google-map-react used for google maps integration,
-axios for request handling,
+Material UI used for visual components,.\
+ipStack to get ip/url location,.\
+google-map-react used for google maps integration,.\
+axios for request handling,.\
 searchQueries are stored in sessionStorage.
 
 ### `npm start`

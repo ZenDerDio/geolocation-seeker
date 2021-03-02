@@ -6,7 +6,7 @@ import Typography from '@material-ui/core/Typography';
 import "./locationDetails.css";
 
 const LocationDetails = ({ addressData, userLocation }) => {
-  const detailsTitle = !!userLocation ? "Your location details:" : "Location details:";
+  const detailsTitle = !!userLocation ? "Your current location details:" : "Location details:";
   return (
     <Card className="locationDetails" style={{backgroundColor: "#424242"}} variant="outlined">
       <Grid

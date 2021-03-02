@@ -1,12 +1,11 @@
 import React from "react";
 import GoogleMapReact from 'google-map-react';
 import {number} from "prop-types";
-import Constants from "../../../Constants/constants";
 import Typography from "@material-ui/core/Typography";
 import LocationOnIcon from '@material-ui/icons/LocationOn';
 import "./locationMap.css";
 
-const GOOGLE_ACCESS_KEY = {key: Constants.ACCESS_KEY_GOOGLE_MAPS}
+const GOOGLE_ACCESS_KEY = {key: process.env.REACT_APP_ACCESS_GOOGLE_MAPS}
 const MAP_DEFAULT_ZOOM = 10;
 
 const LocationMap = ({latitude, longitude}) => {

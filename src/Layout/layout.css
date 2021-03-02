@@ -1,9 +1,9 @@
-.location {
+.layout {
   display: grid;
   grid-template-columns: 1fr 3fr;
 }
 
-.locationData {
+.layoutData {
   display: flex;
   flex-direction: column;
 }

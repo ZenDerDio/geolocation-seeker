@@ -1,48 +1,47 @@
 import React, {useEffect, useReducer} from "react";
-import "./location.css";
 import Location from "./Location";
 import SearchBar from "./SearchBar";
 import SearchResultsList from "./SearchResultsList";
 import Constants from "../Constants/constants";
+import "./layout.css";
 
 const initialState = {
     currentSearchQuery: "",
     searchQueries: [],
 }
 
-const actions = {
+const ACTIONS = {
     setSearch: "setSearchQuery",
     initializeSearchHistory: "setSearchQueriesHistory",
 }
 
 const reducer = (state, action) => {
-    if (action.type === actions.setSearch) {
+    if (action.type === ACTIONS.setSearch) {
         return {
             currentSearchQuery: action.payload.searchQuery,
             searchQueries: [ ...state.searchQueries, action.payload.searchQuery]
         }
     }
 
-    if (action.type === actions.initializeSearchHistory) {
+    if (action.type === ACTIONS.initializeSearchHistory) {
         return {
             currentSearchQuery: action.currentSearchQuery,
             searchQueries: [ ...state.searchQueries, ...action.payload.searchQueries]
         }
     }
-
 }
 
 const Layout = () => {
   const [search, dispatch] = useReducer(reducer, initialState);
 
   const setSearchQuery = (value) => {
-      dispatch({ type: actions.setSearch, payload: {searchQuery: value}})
+      dispatch({ type: ACTIONS.setSearch, payload: {searchQuery: value}})
   }
 
   useEffect(() => {
     const searchHistory = JSON.parse(sessionStorage.getItem(Constants.SESSION_STORAGE_KEY));
     if (!!searchHistory) {
-        dispatch({ type: actions.initializeSearchHistory, payload: {searchQueries: searchHistory}})
+        dispatch({ type: ACTIONS.initializeSearchHistory, payload: {searchQueries: searchHistory}})
     }
   }, []);
 
@@ -51,10 +50,10 @@ const Layout = () => {
   }, [search.searchQueries]);
 
   return (
-    <div className="location" >
+    <div className="layout" >
       <SearchResultsList queriesList={search.searchQueries} setSearchQuery={setSearchQuery} />
-      <div className="locationData" >
-          <Location />
+      <div className="layoutData" >
+          <Location userLocation />
           <SearchBar onSearch={setSearchQuery} />
           <Location searchQuery={search.currentSearchQuery} />
       </div>

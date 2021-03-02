@@ -1,9 +1,9 @@
 import React from "react";
-import "./locationMap.css";
 import GoogleMapReact from 'google-map-react';
 import {number} from "prop-types";
 import Constants from "../../../Constants/constants";
 import Typography from "@material-ui/core/Typography";
+import "./locationMap.css";
 
 const GOOGLE_ACCESS_KEY = {key: Constants.ACCESS_KEY_GOOGLE_MAPS}
 const MAP_DEFAULT_ZOOM = 10;
@@ -15,7 +15,7 @@ const LocationMap = ({latitude, longitude}) => {
      <div className="locationMapGoogleMap" >
          {latitude && longitude ? <GoogleMapReact bootstrapURLKeys={GOOGLE_ACCESS_KEY} center={centerLocation} defaultZoom={MAP_DEFAULT_ZOOM}/>
          :  <Typography component="h2" variant="h6" className="locationMapGoogleError" gutterBottom>
-                 No map location results for this search
+                 No map location results for this search, try this format for example: 214.96.253.215
              </Typography>}
       </div>
     </div>

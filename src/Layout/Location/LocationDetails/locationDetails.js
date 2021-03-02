@@ -1,14 +1,14 @@
 import React from "react";
-import "./locationDetails.css";
-import {shape, string} from "prop-types";
+import {shape, string, bool} from "prop-types";
 import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
 import Typography from '@material-ui/core/Typography';
+import "./locationDetails.css";
 
-const LocationDetails = ({addressData}) => {
-  console.log(addressData.location);
+const LocationDetails = ({ addressData, userLocation }) => {
+  const detailsTitle = !!userLocation ? "Your location details:" : "Location details:";
   return (
-      <Card className="locationDetails" style={{backgroundColor: "#424242"}} variant="outlined">
+    <Card className="locationDetails" style={{backgroundColor: "#424242"}} variant="outlined">
       <Grid
           container
           direction="column"
@@ -18,7 +18,7 @@ const LocationDetails = ({addressData}) => {
         {!!addressData.ip && addressData.city && addressData.country_name ?
             <>
               <Typography component="h2" variant="h5" color="secondary" gutterBottom>
-                Location details:
+                  {detailsTitle}
               </Typography>
 
               <Typography variant="h6" component="h2" className="locationText" gutterBottom >
@@ -45,15 +45,15 @@ const LocationDetails = ({addressData}) => {
                 Capital: {addressData.location?.capital}
               </Typography>
 
-              <img className="locationDetailsFlag" src={addressData.location?.country_flag} />
+              <img className="locationDetailsFlag" src={addressData.location?.country_flag} alt="country-flag" />
             </>
             :
-            <Typography component="h2" variant="h6" className="locationTextError" gutterBottom>
+            <Typography component="h2" variant="h6" className="locationTextError" gutterBottom >
               No details for this search
             </Typography>
         }
       </Grid>
-      </Card>
+    </Card>
   );
 }
 
@@ -66,10 +66,12 @@ LocationDetails.propTypes = {
     region_name: string,
     location: shape({capital: string, country_flag: string,}),
   }),
+  userLocation: bool,
 }
 
 LocationDetails.defaultProps = {
   addressData: null,
+  userLocation: false,
 }
 
 export default LocationDetails;

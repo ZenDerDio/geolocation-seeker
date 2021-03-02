@@ -3,7 +3,7 @@ import Layout from "./Layout";
 import "./App.css";
 
 const App = () => {
-  return ( <div className="App"><Layout /></div>);
+  return <div className="app"><Layout /></div>;
 }
 
 export default App;

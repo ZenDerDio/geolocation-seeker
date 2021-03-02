@@ -29,3 +29,9 @@
     list-style-type: none;
     padding-left: 0;
 }
+
+.searchResultEmpty {
+    font-size: 32px;
+    color: white;
+    flex: 1;
+}
